@@ -1,0 +1,43 @@
+@mixin button-variant($bg-color, $size, $text-color, $border-color: $bg-color) {
+    background: $bg-color;
+    border: 1px solid $border-color;
+    
+    @if $size == 'sm' {
+        padding: 8px 24px;
+    } @else if $size == 'md' {
+        padding: 12px 32px;
+    } @else if $size == 'lg' {
+        padding: 16px 48px;
+    } @else if $size == 'xl' {
+        padding: 24px 64px;
+    }
+
+    @include font-color($text-color);
+}
+
+@mixin font-color($color) {
+    color: $color;
+}
+
+@function px-to-rem($px, $value: 16) {
+    $result: ($px / $value) * 1rem;
+    @return $result;
+}
+
+@mixin mobile {
+    @media (width <= #{$mobile-width}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (width >= #{$tablet-width}) and (width <= #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (width >= #{$desktop-width}) {
+        @content;
+    }
+}
