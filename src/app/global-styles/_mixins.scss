@@ -1,14 +1,14 @@
 @mixin button-variant($bg-color, $size, $text-color, $border-color: $bg-color) {
     background: $bg-color;
     border: 1px solid $border-color;
-    
+
     @if $size == 'sm' {
         padding: 8px 24px;
     } @else if $size == 'md' {
         padding: 12px 32px;
     } @else if $size == 'lg' {
         padding: 16px 48px;
-    } @else if $size == 'xl' {
+    } @else if $size == 'xl' { 
         padding: 24px 64px;
     }
 
