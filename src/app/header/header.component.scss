@@ -1,0 +1,14 @@
+@import "../global-styles/_mixins.scss";
+
+header {
+    @include flex();
+
+    .logo {
+        display: flex;
+
+        .logo-text {
+            font-size: px-to-rem(14);
+            line-height: px-to-rem(38);
+        }
+    }
+}
