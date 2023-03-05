@@ -41,3 +41,12 @@
         @content;
     }
 }
+
+@function px-to-rem($px, $value: 16) {
+    $result: ($px / $value) * 1rem;
+    @return $result;
+}
+
+@mixin flex() {
+    display: flex;
+}
