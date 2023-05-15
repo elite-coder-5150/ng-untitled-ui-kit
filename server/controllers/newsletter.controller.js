@@ -1,4 +1,4 @@
-const createNewsletter = (req, res) => {
+export const createNewsletter = (req, res) => {
     const { title, content } = req.body;
 
     db.query('insert into newsletter (title, content) values (:title, :content)', [title, conent], (error, results) => {
@@ -11,8 +11,8 @@ const createNewsletter = (req, res) => {
     })
 };
 
-const getAllNewsletters = (req, res) => {
-    const sql = `
+export const getAllNewsletters = (req, res) => {
+     const sql = `
         select * from newsletters 
     `;
 
@@ -26,7 +26,7 @@ const getAllNewsletters = (req, res) => {
     })
 };
 
-const getNewsletterById = (req, res) => {
+export const getNewsletterById = (req, res) => {
     const newsletterId = req.params.id;
 
     const sql = `
@@ -44,3 +44,21 @@ const getNewsletterById = (req, res) => {
         }
     });
 };
+
+export const updateNewsletterById = (req, res) => {
+    const newsletterId = req.params.id;
+    const { title, content } = req.body;
+
+    const sql = `
+        UPDATE newsnetter set title= ?, conents = ? where id=?
+    `;
+
+    db.query(sql, [title, conent, newsletterId], (error) => {
+        if (error) {
+            console.error('error updating newsnetter', error);
+            res.status(500).json({ error: 'failed to updat newsnetter' });
+        } else {
+            res.status(200).json({ message: 'newsletter updated successfully'})
+        }
+    })
+}
