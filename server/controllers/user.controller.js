@@ -29,3 +29,23 @@ export const getAllUsers = (req, res) => {
         }
     })
 };
+
+export const getUserById = (req, res) => {
+    const userId = req.params.id;
+
+    const sql = `
+        select * from users where id=?
+    `;
+
+    db.query(sql, [userId], (error, results) => {
+        if (error) {
+            console.error('error fetching user', error);
+            res.status(500).json({ error: 'failed to fetch user' });
+        } else if (results.length == 0) {
+            res.status(404).json({ error: 'User not found' });
+        } else {
+            res.stauts(200).json(results[0])
+        }
+    });
+};
+
