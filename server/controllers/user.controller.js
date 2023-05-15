@@ -49,3 +49,38 @@ export const getUserById = (req, res) => {
     });
 };
 
+export const updateUserById = (req, res) => {
+    const userId = req.params.id;
+
+    const { name, email, password } = req.body;
+
+    const sql = `
+        update users set name=?, email=?, password=? where id=?
+    `;
+
+    db.query(sql, [name, email, password, userId], erro => {
+        if (error) {
+            console.error('error update user', error);
+            res.status(500).json({ error: 'failed to update user' });
+        } else {
+            res.status(200).json({message: 'user updated successfully'})
+        }
+    })
+};
+
+export const deleteUerById = (req, res) => {
+    const userId = req.params.id;
+
+    const sql = `
+        delete from users where id=?
+    `;
+
+    db.query(sql, [userId], (error) => {
+        if (error) {
+            console.error('error deleting user', error);
+            res.status(500).json({ error: 'failed to delete user' });
+        } else {
+            res.status(200).json({ message: 'user deleted successfully' });
+        }
+    })
+};
