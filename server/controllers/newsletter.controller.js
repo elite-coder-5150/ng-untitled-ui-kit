@@ -62,3 +62,20 @@ export const updateNewsletterById = (req, res) => {
         }
     })
 }
+
+const deleteNewsletterById = (req, res) => {
+    const newsletterId = req.params.id;
+
+    const sql = `
+        delete from newsletters where id=?
+    `;
+
+    db.query(sql, [newsletterId], (error) => {
+        if (error) {
+            console.error('Error deleeteing newsletter');
+            res.status(500).json({ error: 'failed to delete newsletter' });
+        } else {
+            res.status(200).json({ message: 'newsletter deleted successfully'})
+        }
+    })
+};
