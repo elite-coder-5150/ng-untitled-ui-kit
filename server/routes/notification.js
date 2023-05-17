@@ -4,10 +4,10 @@ import {
     getNotificationsByCategory,
     markAsRead,
     getAllNotifications,
-    disableNotifications
+    disableNotification
 } from '../controllers/';
 
 router.get('/api/notifications/category/:category', getNotificationsByCategory); 
 router.put('/api/notifications/:id/mark-read', markAsRead);
 router.get('/api/notifications', getAllNotifications);
-router.put('/api/notifications/:id/disable', disableNotifications);
+router.put('/api/notifications/:id/disable', disableNotification);
