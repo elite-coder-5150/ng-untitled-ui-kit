@@ -1,0 +1,67 @@
+<ng-register-header></ng-register-header>
+<div class="register-card">
+    <h1 class="section-title">create an account</h1>
+    <p class="sub-heading">start your 30 day trial.</p>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls['username'].valid}"/>
+            <div 
+                *ngIf="submitted && formControls['username'].invalid" 
+                class="invalid-feedback">Name is required
+            </div>  
+        </div>
+
+        <div class="form-group">
+            <label for="email">email</label>
+            <input 
+                type="email" 
+                id="email" 
+                formControlName="email" 
+                class="form-control"
+                [ngClass]="{'is-invalid': submitted && (formControls['email'].invalid || formControls['email'].touched)}">
+            <div 
+                *ngIf="submitted && (formControls['email'].invalid || formControls['email'].touched)" 
+                class="invalid-feedback">
+                <div *ngIf="formControls['email'].value.required">Email is required</div>
+                <div *ngIf="formControls['email'].value.minLength">Email must be longer then 4 characters in length</div>
+                <div *ngIf="formControls['email'].value.maxLength">Email must be less then 128 characters in length</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">password</label>
+            <input
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && (formControls['password'].invalid || formControls['password'].touched)}">
+            <div 
+                *ngIf="submitted && (formControls['email'].invalid || formControls['email'].touched)" 
+                class="invalid-feedback">
+                <div *ngIf="formControls['password'].value.required">Password is required</div>
+                <div *ngIf="formControls['password'].value.minLength">Password should be more than 4 characters</div>
+                <div *ngIf="formControls['password'].value.maxLength">Password sould be less then 128 characters</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!----- I need to create a custom validator to see if the passwords match ----->
+            <label for="password">password</label>
+            <input
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && (formControls['password'].invalid || formControls['password'].touched)}">
+            <div 
+                *ngIf="submitted && (formControls['email'].invalid || formControls['email'].touched)" 
+                class="invalid-feedback">
+                <div *ngIf="formControls['password'].value.required">Password is required</div>
+                <div *ngIf="formControls['password'].value.minLength">Password should be more than 4 characters</div>
+                <div *ngIf="formControls['password'].value.maxLength">Password sould be less then 128 characters</div>
+            </div>
+        </div>
+    </form>
+</div>
